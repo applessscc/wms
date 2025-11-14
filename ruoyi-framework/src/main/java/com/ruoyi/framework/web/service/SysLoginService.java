@@ -114,12 +114,12 @@ public class SysLoginService {
             if (e instanceof BadCredentialsException)
             {
                 AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.password.not.match")));
-//                throw new UserPasswordNotMatchException();
+                throw new UserPasswordNotMatchException();
             }
             else
             {
                 AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, e.getMessage()));
-//                throw new ServiceException(e.getMessage());
+                throw new ServiceException(e.getMessage());
             }
         }
         AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success")));
